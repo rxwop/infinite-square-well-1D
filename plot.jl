@@ -1,15 +1,15 @@
 using Plots, QuadGK, ColorSchemes
 
 # Vector e.g. [1, 4, 5] or collected Range e.g. collect(1:5)
-const inputstates = [9,15,30]
-const states = sort(inputstates)
+inputstates = [9,15,30]
+sort!(inputstates)
 
 function constant(n)
-    1/sqrt(size(states, 1))
+    1/sqrt(size(inputstates, 1))
     #2/(n*pi)*(1-cos(n*pi/2))
 end
 
-function calculate()
+function calculate(states)
     dx = 0.1
     dt = 1/30
     elapse = 10
@@ -80,4 +80,4 @@ function calculate()
     gif(anim, "isw1_$inputstates.gif", fps = 1/dt)
 end
 
-@time calculate()
+@time calculate(inputstates)
